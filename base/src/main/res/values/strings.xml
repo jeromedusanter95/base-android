@@ -1,0 +1,8 @@
+<resources>
+    <string name="common_validate">Valider</string>
+    <string name="common_retry">Réessayer</string>
+    <string name="common_cancel">Annuler</string>
+    <string name="common_yes">Oui</string>
+    <string name="common_no">Non</string>
+    <string name="common_return">Retour</string>
+</resources>
