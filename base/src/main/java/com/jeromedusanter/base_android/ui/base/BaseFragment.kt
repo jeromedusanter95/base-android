@@ -9,6 +9,7 @@ import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.snackbar.Snackbar
 
 abstract class BaseFragment<B : ViewDataBinding, A : IAction, VM : BaseViewModel<A>> : Fragment(),
     IView<A> {
@@ -70,5 +71,20 @@ abstract class BaseFragment<B : ViewDataBinding, A : IAction, VM : BaseViewModel
         } catch (t: Throwable) {
             t.printStackTrace()
         }
+    }
+
+    override fun onAction(action: A) {
+        super.onAction(action)
+        when (action) {
+            is ErrorAction -> showSnackBar(action.resId)
+        }
+    }
+
+    private fun showSnackBar(resId: Int) {
+        Snackbar.make(requireView(), resId, Snackbar.LENGTH_SHORT).show()
+    }
+
+    private fun showSnackBar(message: String) {
+        Snackbar.make(requireView(), message, Snackbar.LENGTH_SHORT).show()
     }
 }
