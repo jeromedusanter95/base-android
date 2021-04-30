@@ -1,6 +1,8 @@
 package com.jeromedusanter.base_android.ui.utils
 
+import android.graphics.Paint
 import android.view.View
+import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
@@ -24,4 +26,9 @@ internal fun setUiState(view: StatefulLayout, state: String) {
 @BindingAdapter("app:visibleOrGone")
 fun setVisibility(view: View, visible: Boolean) {
     view.visibility = if (visible) View.VISIBLE else View.GONE
+}
+
+@BindingAdapter("app:underline")
+fun underline(view: TextView, underline: Boolean) {
+    if (underline) view.paintFlags = view.paintFlags or Paint.UNDERLINE_TEXT_FLAG
 }
