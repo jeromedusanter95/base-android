@@ -1,8 +1,10 @@
 package com.jeromedusanter.base_android.ui.utils
 
 import android.content.Context
+import android.util.DisplayMetrics
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import androidx.annotation.Px
 import androidx.databinding.Observable
 import org.threeten.bp.LocalDate
 import org.threeten.bp.LocalDateTime
@@ -47,4 +49,10 @@ fun Context.hideKeyboard(view: View): Boolean {
         ignored.printStackTrace()
     }
     return false
+}
+
+@Px
+fun Context.dp2px(dp: Float): Float {
+    val metrics = resources.displayMetrics
+    return dp * (metrics.densityDpi.toFloat() / DisplayMetrics.DENSITY_DEFAULT)
 }
