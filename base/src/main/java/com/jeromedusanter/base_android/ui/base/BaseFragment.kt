@@ -32,13 +32,8 @@ abstract class BaseFragment<B : ViewDataBinding, A : IAction, VM : BaseViewModel
         binding = DataBindingUtil.inflate(inflater, resId, container, false)
         binding.setVariable(viewModelVariableId, viewModel)
         binding.lifecycleOwner = viewLifecycleOwner
-        return binding.root
-    }
-
-    @CallSuper
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
         viewModel.action.observe(viewLifecycleOwner, { action -> action?.let { onAction(action) } })
+        return binding.root
     }
 
     @CallSuper

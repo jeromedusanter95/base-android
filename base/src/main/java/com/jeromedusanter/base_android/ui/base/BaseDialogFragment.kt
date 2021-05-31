@@ -30,13 +30,8 @@ abstract class BaseDialogFragment<B : ViewDataBinding, A : IAction, VM : BaseVie
         binding = DataBindingUtil.inflate(inflater, resId, container, false)
         binding.setVariable(viewModelVariableId, viewModel)
         binding.lifecycleOwner = viewLifecycleOwner
-        return binding.root
-    }
-
-    @CallSuper
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
         viewModel.action.observe(viewLifecycleOwner, { action -> action?.let { onAction(action) } })
+        return binding.root
     }
 
     @CallSuper

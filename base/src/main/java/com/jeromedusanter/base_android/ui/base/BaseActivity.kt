@@ -1,6 +1,7 @@
 package com.jeromedusanter.base_android.ui.base
 
 import android.os.Bundle
+import android.os.PersistableBundle
 import androidx.annotation.CallSuper
 import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
@@ -25,11 +26,6 @@ abstract class BaseActivity<B : ViewDataBinding, A : IAction, VM : BaseViewModel
         binding = DataBindingUtil.setContentView(this, resId)
         binding.setVariable(viewModelVariableId, viewModel)
         binding.lifecycleOwner = this
-    }
-
-    @CallSuper
-    override fun onResume() {
-        super.onResume()
         viewModel.action.observe(this, { action -> action?.let { onAction(action) } })
     }
 
